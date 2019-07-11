@@ -7,6 +7,12 @@ use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
+    public function index(Request $request)
+    {
+        $teacher = Teacher::all();
+        return view('teacher.index' , ['teacher' =>$teacher]);
+    }
+
     public function profileteac($id)
     {
         $teacher = Teacher::find($id);

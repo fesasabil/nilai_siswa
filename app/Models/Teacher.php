@@ -7,8 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Teacher extends Model
 {
     protected $fillable = [
-        'name', 'telepon', 'alamat'
+        'name', 'telepon', 'alamat', 'avatar'
     ];
+
+    public function getAvatar()
+    {
+        if(!$this->avatar){
+            return asset('images/default.jpeg');
+        }
+        return asset('images/'.$this->avatar);
+    }
 
     public function subject()
     {

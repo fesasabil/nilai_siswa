@@ -12,6 +12,8 @@
 
                                     <div class="right">
                                         <!-- Button trigger modal -->
+                                        <a href="/student/exportExcel" class="btn btn-sm btn-primary">Export Excel</a>
+                                        <a href="/student/exportPdf" class="btn btn-sm btn-primary">Export PDF</a>
                                         <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="lnr lnr-plus-circle"></i></button>
                                     </div>
 
@@ -59,7 +61,7 @@
                                                 <td>{{$s->average()}}</td>
                                                 <td>
                                                     <a href="/student/{{$s->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
-                                                    <a href="/student/{{$s->id}}/delete" class="btn btn-danger btn-sm" onclick="return confirm('are you want delete this file?')">Delete</a>
+                                                    <a href="#" class="btn btn-danger btn-sm delete" student-id="{{$s->id}}">Delete</a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -101,6 +103,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="exampleInputEmail1">Password</label>
+                                <input name="password" type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Password" value="{{ old('password')}}">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="exampleFormControlSelect1">Gender</label>
                                 <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
                                 <option value="">--- Pilih Gender ---</option>
@@ -131,4 +138,26 @@
                     </div>
                 </div>
             </div>
+@stop
+
+@section('footer')
+  <script>
+    $('.delete').click(function(){
+        var student_id = $(this).attr('student-id');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file id "+student_id +"!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location = "/student/"+student_id +"/delete";
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+            });
+    });
+  </script>
 @stop

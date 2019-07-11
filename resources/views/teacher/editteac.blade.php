@@ -52,6 +52,7 @@
                                             <input type="file" name="avatar" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-warning">Update</button>
+                                        <a href="/teacher" class="btn btn-danger">Cancel</a>
                                     </form>
 								</div>
 							</div>

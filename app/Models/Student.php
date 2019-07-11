@@ -25,19 +25,29 @@ class Student extends Model
 
     public function average()
     {
-        //Get Grade
+        //Get Value 
+
         $total = 0;
         $hasil = 0;
+
+        // if($total > 0 && $hasil > 0){}
         foreach($this->subject as $subject)
         {
             $total += $subject->pivot->value;
             $hasil ++;
         }
+        
             return round($total/$hasil);
     }
+    
 
     public function  nama_lengkap()
     {
         return $this->nama_depan. ' ' .$this->nama_belakang;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withPivot(['value'])->withTimeStamps();
     }
 }

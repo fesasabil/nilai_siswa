@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Student;
 use App\Models\Teacher;
 
